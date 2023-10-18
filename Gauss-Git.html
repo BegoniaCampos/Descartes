@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>TITULO</title>
+      <!-- Version internet 
+  <script type="text/javascript" src="https://arquimedes.matem.unam.mx/Descartes5/lib/descartes-min.js" charset="utf-8"></script> -->
+  <script type='text/javascript' src='descartes-min.js'></script>
+</head>
+
+<body style="padding:0; margin:0; background:#eff0f1;">
+
+  <div align="center">
+    <ajs name="Descartes" code="Descartes" width="970" height="600">
+      <param name="tamaño" value="970x600">
+      <param name="decimal_symbol" value=",">
+      <param name="nombre" value="">
+      <param name="Versión" value="5.5">
+      <param name="editable" value="no">
+      <param name="Idioma" value="español">
+      <param name="Botones" value="créditos=no config=no inicio=no limpiar=no filas_norte=0 filas_sur=0 ancho_este=150 ancho_oeste=150 alto=40 ">
+      <param name="E_01" value="tipo='R2' id='SUP' ancho='100%' alto='160' fondo='e8e8e8' red='no' red10='no' ejes='no' info='Espacio del título' ">
+      <param name="E_02" value="tipo='R2' id='E1' y='160' ancho='100%' alto='440' fijo='sí' escala='55' red10='no' números='sí' info='Gráfica de la campana de Gauss' ">
+      <param name="C_01" value="id='mu' tipo='numérico' interfaz='pulsador' región='interior' espacio='SUP' nombre='μ' expresión='(SUP._w-600,SUP._h-100,300,50)' discreto='sí' decimales='1' visible='sí' acción='calcular' parámetro='Integra();E1.Ox=-mu*E1.escala' font_family='Serif' fuente puntos='26' cursiva='sí' ">
+      <param name="C_02" value="id='sigma' tipo='numérico' interfaz='pulsador' región='interior' espacio='SUP' nombre='σ' expresión='(SUP._w-300,SUP._h-100,300,50)' valor='1' min='0.1' discreto='sí' visible='sí' acción='calcular' parámetro='Integra();setE1()' font_family='Serif' fuente puntos='26' cursiva='sí' ">
+      <param name="C_03" value="id='aa' tipo='numérico' interfaz='pulsador' región='interior' espacio='SUP' nombre='a' expresión='(SUP._w-500,SUP._h-50,300,50)' valor='-0.7' discreto='sí' decimales='1' visible='sí' acción='calcular' parámetro='Integra()' dibujar-si='Std' font_family='Serif' fuente puntos='26' cursiva='sí' btn_pos='h_left_right' ">
+      <param name="A_01" value="id='INICIO' algoritmo='sí' evaluar='una-sola-vez' hacer='dos_pi=2*pi;dx=0.001;;Std=1;;setE1();;p=0.2316419;b1=0.31938153;b2=-0.356563782;b3=1.781477937;b4=-1.821255978;b5=1.330274429;;Integra()' ">
+      <param name="A_02" value="id='CALCULOS' algoritmo='sí' evaluar='siempre' ">
+      <param name="A_03" value="id='f(x)' algoritmo='no' expresión='(1/(sigma*sqrt(dos_pi)))*e^(-0.5*((x-mu)/sigma)^2)' tipo='función' ">
+      <param name="A_04" value="id='IntegraEuler()' algoritmo='sí' expresión='sum*dx' local='sum,xx' inicio='sum=0;xx=x_ini' hacer='sum=sum+f(xx);xx=xx+dx' mientras='xx<=x_fin' tipo='función' ">
+      <param name="A_05" value="id='IntegraTrapecio()' algoritmo='sí' expresión='sum*dx' local='sum,xx,h0,h1' inicio='sum=0;xx=x_ini' hacer='h0=f(xx);h1=f(xx+dx);sum=sum+(h0+h1)/2;xx=xx+dx' mientras='xx<=x_fin' tipo='función' ">
+      <param name="A_06" value="id='IntegraSimpson()' algoritmo='sí' expresión='sum*dx/6' local='sum,xx' inicio='sum=0;xx=x_ini' hacer='sum=sum+(f(xx)+4*f(xx+dx/2)+f(xx+dx));xx=xx+dx' mientras='xx<=x_fin' tipo='función' ">
+      <param name="A_07" value="id='Integra()' algoritmo='sí' expresión='1' hacer='x_ini=(Std)?mu-5*sigma:a;x_fin=(Std)?aa:b;//integralEuler=IntegraEuler();//integralTrapecio=IntegraTrapecio();//integralSimpson=IntegraSimpson();facum=(Std)?Facum(aa):Facum(b)-Facum(a)' tipo='función' ">
+      <param name="A_08" value="id='setE1()' algoritmo='sí' expresión='1' hacer='E1.escala=ent(min((E1._w-40)/(8*sigma),(E1._h-40)/f(mu)));E1.Ox=-mu*E1.escala;E1.Oy=ent(E1._h/2)-20' tipo='función' ">
+      <param name="A_09" value="id='Facum(x)' algoritmo='sí' expresión='(zx>=0)?g:(1-g)' hacer='zx=(x-mu)/sigma;pzx=0.398942281*exp(-(zx^2)/2);t=1/(1+p*abs(zx));g=1-(pzx*((b1*t)+(b2*(t^2))+(b3*(t^3))+b4*((t^4))+(b5*(t^5))))' tipo='función' info='Función de Distribución' ">
+      <param name="G_01" value="espacio='ParamsSp' tipo='texto' color='20303a' coord_abs='sí' expresión='(ent(ParamsSp._w/2),ParamsSp._h-10)' texto='Área Euler=[integralEuler]\nÁrea Trapecio=[integralTrapecio]\nÁrea Simpson=[integralSimpson]\nArea aproximada=[facum]' decimales='6' fijo='no' ancho='1' align='a_center' anchor='a_bottom_center' info='Valores integrales.' ">
+      <param name="G_02" value="espacio='E1' tipo='ecuación' color='ffffffff' dibujar-si='((x>x_ini)&&(x<x_fin))&(!Std)' coord_abs='no' expresión='y=f(x)' relleno+='bd00bdbd' ancho='2' info='Campana fill between.' ">
+      <param name="G_03" value="espacio='E1' tipo='ecuación' color='ffffffff' dibujar-si='((x>x_ini)&&(x<x_fin))&Std' coord_abs='no' expresión='y=f(x)' relleno+='bd00bdbd' ancho='2' info='Campana fill standard.' ">
+      <param name="G_04" value="espacio='E1' tipo='segmento' color='ff00ff' coord_abs='no' expresión='((Std)?aa:a,0)((Std)?aa:a,1000)' tamaño='0' ancho='1' info='lim. izq.' ">
+      <param name="G_05" value="espacio='E1' tipo='segmento' color='ff00ff' dibujar-si='!Std' coord_abs='no' expresión='(b,0)(b,1000)' tamaño='0' ancho='1' info='lim. der.' ">
+      <param name="G_06" value="espacio='E1' tipo='ecuación' color='00bd00' coord_abs='no' expresión='y=f(x)' ancho='2' info='Campana.' ">
+      <param name="G_07" value="espacio='E1' tipo='punto' color='20303a' coord_abs='no' expresión='((Std)?aa:a,0)' texto='a' tamaño='4' negrita='sí' cursiva='sí' font_family='Serif' info='a.' ">
+      <param name="G_08" value="espacio='E1' tipo='punto' color='20303a' dibujar-si='!Std' coord_abs='no' expresión='(b,0)' texto='b' tamaño='4' negrita='sí' cursiva='sí' font_family='Serif' info='b.' ">
+      <param name="G_09" value="espacio='SUP' tipo='rectángulo' color='50c392' coord_abs='sí' expresión='(0,0,SUP._w,SUP._h-100)' relleno='50c392' ancho='1' info='Rectángulo título.' ">
+      <param name="G_10" value="espacio='SUP' tipo='texto' color='20303a' coord_abs='sí' expresión='(ent(SUP._w/2),30)' texto='{\rtf1\uc0{\fonttbl\f0\fcharset0 Times New Roman;}\f0\fs60 Distribución Normal (μ, σ)}' ancho='1' negrita='sí' fuente puntos='24' align='a_center' anchor='a_center_center' info='espacio para el título' ">
+      <param name="G_11" value="espacio='SUP' tipo='texto' color='20303a' coord_abs='sí' expresión='(80,SUP._h-60)' texto='{\rtf1\uc0{\fonttbl\f0\fcharset0 Times New Roman;}\f0\fs52 Entra los parámetros}' ancho='1' fuente puntos='26' align='a_left' anchor='a_center_left' info='Etiq. parámetros.' ">
+      <param name="G_12" value="espacio='SUP' tipo='texto' color='20303a' coord_abs='sí' expresión='(80,SUP._h-20)' texto='{\rtf1\uc0{\fonttbl\f0\fcharset0 Times New Roman;}\f0\fs52 Entra el valor &quot;a&quot;}' ancho='1' fuente puntos='26' align='a_left' anchor='a_center_left' info='Etiq. control aa' ">
+    </ajs>
+  </div>
+
+
+
+</body>
+</html>
